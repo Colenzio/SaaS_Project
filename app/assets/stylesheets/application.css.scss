@@ -21,6 +21,7 @@ h1, h2, h3 {
   font-family: 'Open Sans', sans-serif;
 }
 
+//backround of nav
 .navbar, .home-callout {
   background: #00c6ff;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
@@ -31,10 +32,33 @@ h1, h2, h3 {
   border: none;
 }
 
+//white withen nav
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+//use > > for child attributes
+.navbar-default .navbar-nav > li > a {
+  color:white;
+}
+
+//create color change for hover
+.navbar-default .navbar-brand:hover {
+  color:white;
+  opacity:0.75;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color:white;
+  opacity:0.75;
+}
+
+//Remove space from navbar and header
 .home-callout {
   margin-top: -20px;
   padding-top: 50px;
   padding-bottom: 100px;
   color: white;
 }
+
 
