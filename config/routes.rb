@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   #when about select, change to about page
   get 'about', to: 'pages#about'
+  resources :contacts
 end
