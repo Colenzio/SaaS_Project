@@ -3,10 +3,13 @@
     <h3 class="text-center">Contact Us</h3>
     <!-- Bootstrap column control 4 empty columns to the left -->
     <div class="col-md-4 col-md-offset-4">
+      <!-- Create notification --!>
+      <%= flash[:notice] %>
       <!-- Create grey box for form -->
       <div class="well">
         <!-- Create rails form -->
-        <%= form_for "/contacts" do |f| %>
+        <!-- Use @contact instance var from contacts_controller -->
+        <%= form_for @contact do |f| %>
         <!-- Create each form box -->
           <div class="form-group">
             <%= f.label :name %>
