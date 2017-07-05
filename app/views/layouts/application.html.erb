@@ -38,8 +38,19 @@
       </div>
     </nav>
     
+    <div class= "container">
+     <!-- Create notification -->
+      <!-- Loops through flash hash,
+      type = key danger or success
+      meg = value--!>
+      <% flash.each do |type, msg| %>
+      <!-- string interpolation -->
+        <%= content_tag :div, msg, class: "alert alert-#{type}" %>
+      <% end %>
+      
+      </div>
 
-      <!--Rails loads in the rest of the html from the views-->
+      <!--Rails loads in the rest of the html from the views -->
      <%= yield %>
 
   </body>

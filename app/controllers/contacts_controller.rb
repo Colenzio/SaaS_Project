@@ -12,10 +12,16 @@ class ContactsController < ApplicationController
     #.save saves to DB
     #if save successful, redirect user back to blank page with message
     if @contact.save
-      redirect_to new_contact_path, notice: "Message Sent."
+      flash[:success] = "Message Sent"
+      redirect_to new_contact_path
     #if it fails also redirect back but show fail message
     else 
-      redirect_to new_contact_path, notice: "Error Occured."
+      #if there is an error, the @contact will produce a set of errors in array form
+      #.errors will allow us to access the errors
+      #.full_messages make them better english
+      #.join(", ") then takes out each error and forms them into sentences
+      flash[:danger] = @contact.errors.full_messages.join(", ")
+      redirect_to new_contact_path
     end
   end
   
