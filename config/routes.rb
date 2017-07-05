@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   #shortcut for generating paths
   #provides various contact pages
   resources :contacts
+  #points custom url to contacts/new
+  get 'contact-us', to: 'contacts#new'
 end

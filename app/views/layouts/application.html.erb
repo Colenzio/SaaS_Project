@@ -42,7 +42,7 @@
      <!-- Create notification -->
       <!-- Loops through flash hash,
       type = key danger or success
-      meg = value--!>
+      msg = value--!>
       <% flash.each do |type, msg| %>
       <!-- string interpolation -->
         <%= content_tag :div, msg, class: "alert alert-#{type}" %>
