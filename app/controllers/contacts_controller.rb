@@ -12,6 +12,12 @@ class ContactsController < ApplicationController
     #.save saves to DB
     #if save successful, redirect user back to blank page with message
     if @contact.save
+      #go into contact form and get name, email and comments
+      name = params[:contact][:name]
+      email = params[:contact][:email]
+      body = params[:contact][:comments]
+      #sends data to ContactMailer
+      ContactMailer.contact_email(name, email, body).deliver
       flash[:success] = "Message Sent"
       redirect_to new_contact_path
     #if it fails also redirect back but show fail message
