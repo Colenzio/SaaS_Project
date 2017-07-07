@@ -32,9 +32,14 @@
           
           <!-- Create buttons for login/sign up -->
           <div class= "nav navbar-nav navbar-right">
-            <!-- Create buttons with correct paths for user session/reg -->
-             <%= link_to "Log In", new_user_session_path, class: "btn btn-default navbar-btn" %>
-             <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default navbar-btn" %>
+            <!-- If the user is signed in, show button to log out -->
+              <% if user_signed_in? %>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-default navbar-btn" %>
+              <!-- Otherwise show buttons for log in/Sign up -->
+              <% else %>
+                <%= link_to "Log In", new_user_session_path, class: "btn btn-default navbar-btn" %>
+                <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default navbar-btn" %>
+              <% end %>
           </div>
           
           <ul class="nav navbar-nav navbar-right">
