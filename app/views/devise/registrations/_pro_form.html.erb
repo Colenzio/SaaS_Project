@@ -2,6 +2,9 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   
+  <!-- Inject hidden field into form, grabbing whichever plan from url and setting it to that value -->
+  <%= hidden_field_tag 'plan', params[:plan] %>
+  
   <!-- Various fields -->
   <div class="field form-group">
     <%= f.label :email %>
