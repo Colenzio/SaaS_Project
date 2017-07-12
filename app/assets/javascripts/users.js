@@ -1,26 +1,22 @@
 /* global $, Stripe */
-//Document ready
+//Document ready.
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
   var submitBtn = $('#form-submit-btn');
-  
-  //Set Stripe public key
-  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content') )
-  
-  //When user clicks form submit button,
+  //Set Stripe public key.
+  Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
+  //When user clicks form submit btn,
   submitBtn.click(function(event){
-  //when user clicks, the default behavour is halted
-  event.preventDefault();
-  //Grab submit button, change its name to processing, and added properry of grey
-  submitBtn.val("Processing").prop('disabled', true);
-  
-  //Collect credit card field
-   var ccNum = $('#card_number').val(),
-       cvcNum = $('#card_code').val(),
-       expMonth = $('#card_month').val(),
-       expYear = $('#card_year').val();
-
- //Use Stripe JS library to check for card errors.
+    //prevent default submission behavior.
+    event.preventDefault();
+    //Grab submit button, change its name to processing, and added properry of grey
+    submitBtn.val("Processing").prop('disabled', true);
+    //Collect the credit card fields.
+    var ccNum = $('#card_number').val(),
+        cvcNum = $('#card_code').val(),
+        expMonth = $('#card_month').val(),
+        expYear = $('#card_year').val();
+    //Use Stripe JS library to check for card errors.
     var error = false;
     //Validate card number.
     if(!Stripe.card.validateCardNumber(ccNum)) {
@@ -52,15 +48,13 @@ $(document).on('turbolinks:load', function(){
     }
     return false;
   });
-  //Stripe will return back with card token
-  function stripeResponseHandler(status, response){
-    //Get the token from the response
-    var token = response.id
-    
-   //Inject card token as hidden field into form
-  theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );  
+  //Stripe will return a card token.
+  function stripeResponseHandler(status, response) {
+    //Get the token from the response.
+    var token = response.id;
+    //Inject the card token in a hidden field.
+    theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );
+    //Submit form to our Rails app.
+    theForm.get(0).submit();
   }
-
-  //Submit form into our rails app
-  theForm.get(0).submit();
 });
