@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
  # Each user should belong to a planrail
  belongs_to :plan
+ has_one :profile
  
  # allows us to grab the data from the form (whitelist)
  attr_accessor :stripe_card_token
