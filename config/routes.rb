@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # when devise creates a user, we devise it know which type of user it is
   devise_for :users, controllers: { registrations: 'users/registrations' }
+  # 
   resources :users do 
     resource :profile
   end  
