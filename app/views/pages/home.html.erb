@@ -6,6 +6,30 @@
     <!-- Sign up links -->
     <div class="container home-signup-links">
       <div class="row">
+        <!-- Link to create a profile, pointing to current user -->
+        <% if user_signed_in? %>
+          <div class="col-md-6">
+            <div class="well">
+              <h2 class="text-center">Your Profile</h2>
+                <% if current_user.profile %>
+                <%= link_to "Edit your profile", "#", class: 'btn btn-default btn-lg btn-block' %>
+                <%= link_to "View your profile", user_path(current_user.id), class: 'btn btn-default btn-lg btn-block' %>
+              <% else %>
+                  <p>Create your profile so that you can share your information with the community!</p>
+                 <%= link_to "Create your profile", new_user_profile_path(user_id: current_user.id), class: 'btn btn-default btn-lg btn-block' %>
+              <% end %>
+           </div>
+         </div>
+         
+         <div class="col-md-6">
+          <div class="well">
+             <h2 class="text-center">The community</h2>
+              <p>Visit the community to meet other developers, entrepenuers and investors!</p>
+               <%= link_to "Edit your profile", "#", class: 'btn btn-default btn-lg btn-block' %>
+           </div>
+         </div>
+         
+        <% else %>
         <div class="col-md-6">
           <div class="well">
             <h2 class="text-center">Basic Membership</h2>
@@ -22,6 +46,5 @@
           </div>
         </div>
       </div>
-      <!-- Link to create a profile, pointing to current user -->
-      <%= link_to "Create your profile!", new_user_profile_path(user_id: current_user.id) if user_signed_in? %>
-    </div>
+    <% end %>  
+  </div>
